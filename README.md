@@ -26,3 +26,4 @@ int main()
 
 }
 ```
+![](https://raw.githubusercontent.com/cobrce/Sequence/master/sim.gif)
