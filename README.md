@@ -6,7 +6,7 @@ A library in C++ to create simple finite state machines following the logic of "
 * Make sure that there is an implementation of the function "millis" and "millis_init"
 * In your code create a "Sequence" object and call the functions "If", "Do", "Wait" (optional), "Reset" with their parameters, order doesn't matter and not necessarily called from the same place
 
-The following example expects a button to be pressed in PB0, an LED in PB1 is turned on, if after 1 second the button is realease, the led is turned off
+The following example expects a button to be pressed in PB0, an LED in PB1 is turned on, if after 1 second the button is released, the led is turned off
 
 ``` c++
 #include "sequence.cpp"
