@@ -12,11 +12,11 @@ Finite state machines in general are a practical way to wait for events or creat
 ## The functions
 ### The machine has 3 states : *init*, *verified* and *done*, these states are changed by and influence the execution of the following functions :
 
-**If** : accepts as parameter a function that returns a bool called *condition*, if the machine is in **init** state and *condition* returns true the machine moves to the next step : the state of **verified**
-**Do** : has one parameter, a function called *action*, if the machine is in the state of **verified**, *action* is executed then the machine moves to the state of **done**
-**Wait** (optional) : adds a delay between *Do* and *Reset*, preferably called before *Reset* or atleast before the reset condition, this function just modifies a variable, the actual waiting (sort of) is done in the function *Reset* (see below)
-**Break** (optional) : as a parameter it accepts a function *condition* to stop the timer. When the timer is reset, calling *Wait* won't restart it until the machine is reset.
-**Reset** : has two parameters, *codition* and *action*, if the machine is in **done** state and the timer (optional) is consumed and *condition* returns true, the function *action* is executed and the machine returns to **init** state.
+* **If** : accepts as parameter a function that returns a bool called *condition*, if the machine is in **init** state and *condition* returns true the machine moves to the next step : the state of **verified**
+* **Do** : has one parameter, a function called *action*, if the machine is in the state of **verified**, *action* is executed then the machine moves to the state of **done**
+* **Wait** (optional) : adds a delay between *Do* and *Reset*, preferably called before *Reset* or atleast before the reset condition, this function just modifies a variable, the actual waiting (sort of) is done in the function *Reset* (see below)
+* **Break** (optional) : as a parameter it accepts a function *condition* to stop the timer. When the timer is reset, calling *Wait* won't restart it until the machine is reset.
+* **Reset** : has two parameters, *codition* and *action*, if the machine is in **done** state and the timer (optional) is consumed and *condition* returns true, the function *action* is executed and the machine returns to **init** state.
 
 The following example expects a button to be pressed in PB0, an LED in PB1 is turned on, if after 1 second the button is realease, the led is turned off (the function *Break* is not used)
 
