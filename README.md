@@ -50,3 +50,30 @@ In this example we will use another button too interrupt the timer and turn off 
 ```
 
 ![](https://raw.githubusercontent.com/cobrce/Sequence/master/sim_break.gif)
+
+In the following example we will use two machines to command 2 leds with different timers and different on/off buttons, the LED is in PD1, ON button is on PD0 and off button is on PD2 (the two sequences use lambda functions)
+
+``` C++
+DDRB = 1 << PB1;
+DDRD = 1 << PD1;
+Sequence sequence,sequence2;
+
+while (true)
+{
+    sequence.
+    If([]() -> bool { return PINB & 1; }).
+    Do([]() { PORTB |= 1 << PB1; }).
+    Wait(1000).
+    Break([]() -> bool { return PINB & (1 << PB2);}).
+    Reset([]() -> bool {return !(PINB & 1); }, []() { PORTB &= ~(1 << PB1); });
+
+    sequence2.
+    If([]() -> bool { return PIND & 1; }).
+    Do([]() { PORTD |= 1 << PD1; }).
+    Wait(3000).
+    Break([]() -> bool { return PIND & (1 << PD2);}).
+    Reset([]() -> bool {return !(PIND & 1); }, []() { PORTD &= ~(1 << PD1); });
+}
+```
+
+![](https://raw.githubusercontent.com/cobrce/Sequence/master/sim_break_2leds.gif)
